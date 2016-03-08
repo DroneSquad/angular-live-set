@@ -4364,7 +4364,11 @@ angular.module('ls.LiveSet',[]).factory('LiveSet', ['$rootScope', function($root
 
     switch(change.type) {
       case 'create':
-        this._data.push(angular.copy(change.data));
+        if (this._data[index]) {
+          this._data[index] = angular.copy(change.data);
+        } else {
+          this._data.push(angular.copy(change.data));
+        }
         break;
       case 'update':
         this._data[index] = angular.copy(change.data);
