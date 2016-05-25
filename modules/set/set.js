@@ -45,6 +45,7 @@ angular.module('ls.LiveSet',[]).factory('LiveSet', ['$rootScope', function($root
   LiveSet.prototype._applyChange = function(change) {
     var previous;
     var index = change.target ? this.getIndexById(change.target) : null;
+		if (index === -1 && change.type !== 'create') return;
 
     if (change.optimistic) {
       this._handleOptimisticChange(change, index);
